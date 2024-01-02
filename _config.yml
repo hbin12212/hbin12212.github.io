@@ -1,4 +1,4 @@
-title: Your awesome title
+title: 효빈 블로그
 author: Hyobin
 email: hbin12212@gmail.com
 description: > # this means to ignore newlines until "show_exerpts:"
@@ -12,12 +12,12 @@ sass:
     sass_dir: _sass
 plainwhite:
     name: Hyobin
-    tagline: Developer. Designer
+    tagline: FrontEnd Developer, Educator
     date_format: '%b %-d, %Y'
     sitemap: true # set to true to generate sitemap.xml content
     search: true # set to true to enable searchbar
     dark_mode: true # set to true to add dark mode toggle
-    portfolio_image: 'assets/portfolio.png' # the path from the base directory of the site to the image to display (no / at the start)
+    portfolio_image: 'assets/myPhoto.png' # the path from the base directory of the site to the image to display (no / at the start)
     html_lang: 'kr' # set the lang attribute of the <html> tag for the pages. See here for a list of codes: https://www.w3schools.com/tags/ref_country_codes.asp
     condensed_mobile:
         #- home
@@ -25,9 +25,9 @@ plainwhite:
         - post
     # generate social links in footer
     social_links:
-        twitter: samarsault
-        github: samarsault
-        linkedIn: in/samarsault
+        twitter: hyob1221
+        github: hbin12212
+        linkedIn: in/효빈-김-6003b1195/
         #dribbble: jekyll
         #flickr:   jekyll
         #instagram: jekyll
