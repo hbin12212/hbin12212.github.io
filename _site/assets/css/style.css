@@ -818,7 +818,7 @@ main .about .about-header .about-title {
 .post {
   font-family: "Merriweather", sans-serif;
   font-weight: 300;
-  color: #222;
+  color: #1e1e1e;
   line-height: 1.9em;
 }
 .post p {
@@ -860,7 +860,8 @@ main .about .about-header .about-title {
   transition: width 0.1s;
 }
 
-table th, table td {
+table th,
+table td {
   padding: 8px 13px;
   border: 1px solid #dfe2e5;
 }
