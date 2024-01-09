@@ -574,7 +574,7 @@ img,
 embed,
 object,
 video {
-  max-width: 100%;
+  max-width: 50%;
 }
 
 a {
@@ -619,6 +619,9 @@ main {
   main {
     margin: 0 10px;
     flex-direction: column;
+  }
+  main img {
+    max-width: 100%;
   }
 }
 @media screen and (max-width: 480px) {

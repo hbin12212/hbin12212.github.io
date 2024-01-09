@@ -27,7 +27,7 @@ img,
 embed,
 object,
 video {
-    max-width: 100%;
+    max-width: 50%;
 }
 
 a {
@@ -63,6 +63,9 @@ main {
     @media screen and (max-width: $mobileW) {
         margin: 0 10px;
         flex-direction: column;
+        img {
+            max-width: 100%;
+        }
     }
     @media screen and (max-width: $smallMobileW) {
         margin: 0;
