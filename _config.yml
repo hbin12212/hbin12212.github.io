@@ -14,6 +14,7 @@ plainwhite:
     name: Hyobin
     tagline: FrontEnd Developer, Educator
     date_format: '%b %-d, %Y'
+    analytics_id: 'G-9JJ2ZNMBG7'
     sitemap: true # set to true to generate sitemap.xml content
     search: true # set to true to enable searchbar
     dark_mode: true # set to true to add dark mode toggle
@@ -45,7 +46,6 @@ plainwhite:
         #   instance: example.com
         # - username: jekyll2
         #   instance: example.com
-    disqus_shortname: hyobin
 
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
