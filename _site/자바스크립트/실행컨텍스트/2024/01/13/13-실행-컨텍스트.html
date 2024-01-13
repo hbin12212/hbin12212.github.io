@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<title>자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까?</title>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까? | 효빈 블로그</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까?" />
+<meta name="author" content="Hyobin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까? 자바스크립트의 실행 컨텍스트라는 개념을 알고 있다면, 이를 이해할 수 있다. 실행 컨텍스트에 대해 알아보자." />
+<meta property="og:description" content="자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까? 자바스크립트의 실행 컨텍스트라는 개념을 알고 있다면, 이를 이해할 수 있다. 실행 컨텍스트에 대해 알아보자." />
+<link rel="canonical" href="http://localhost:4000/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/2024/01/13/13-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8.html" />
+<meta property="og:url" content="http://localhost:4000/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/2024/01/13/13-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8.html" />
+<meta property="og:site_name" content="효빈 블로그" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-13T14:07:36+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hyobin"},"dateModified":"2024-01-13T14:07:36+09:00","datePublished":"2024-01-13T14:07:36+09:00","description":"자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까? 자바스크립트의 실행 컨텍스트라는 개념을 알고 있다면, 이를 이해할 수 있다. 실행 컨텍스트에 대해 알아보자.","headline":"자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까?","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/2024/01/13/13-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8.html"},"url":"http://localhost:4000/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/2024/01/13/13-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<script type="text/javascript" src="/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/">
+        
+        <img src="/assets/myPhoto.png" alt="Hyobin" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/">Hyobin</a>
+      </h2>
+      </div><p class="tagline">FrontEnd Developer, Educator</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/hbin12212" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/효빈-김-6003b1195/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><a href="https://twitter.com/hyob1221" target="_blank">
+          <li>
+            <i class="icon-twitter-squared"></i>
+          </li>
+        </a></ul><p class="about-footer condensed">&copy;
+        2024</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="post-container">
+  <a class="post-link" href="/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/2024/01/13/13-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8.html">
+    <h2 class="post-title">자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까?</h2>
+  </a>
+  <div class="post-meta">
+    <div class="post-date"><i class="icon-calendar"></i>Jan 13, 2024</div><ul class="post-categories"><li>자바스크립트</li><li>실행컨텍스트</li></ul></div>
+  <div class="post">
+    <p>자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까? 자바스크립트의 실행 컨텍스트라는 개념을 알고 있다면, 이를 이해할 수 있다. 실행 컨텍스트에 대해 알아보자.</p>
+
+<h2 id="실행-컨텍스트-execution-context">실행 컨텍스트 Execution Context</h2>
+
+<p>실행 컨텍스트는 영어로 Execution Context다. 직역하면 실행 문맥이다.
+실행 문맥? 한국어로 들어봐도 잘 와닿지 않는다. 그럼 이 글을 계속해서 읽어보자.</p>
+
+<h3 id="자바스크립트-엔진">자바스크립트 엔진</h3>
+
+<p>먼저 브라우저가 자바스크립트 코드를 어떻게 실행하는지 알아보자. 자바스크립트는 “자바스크립트 엔진”이 있는 곳에서 동작한다. 자바스크립트 엔진이 바로 자바스크립트 코드를 실행하게 도와주는 역할을 하는 녀석이고, 우리가 사용하고 있는 브라우저에는 이 자바스크립트 엔진이 있기 때문에 자바스크립트를 실행할 수 있다.</p>
+
+<p>그렇다면 자바스크립트 엔진은 자바스크립트 코드를 어떻게 실행시킬까? 자바스크립트 코드를 실행하기 위해서는 변수, 스코프, 함수, this 등의 정보들을 알고 있어야한다. 이 정보들이 들어있는 객체가 바로 실행 컨텍스트다. 한마디로 정리하면, 실행 컨텍스트는 자바스크립트 코드를 실행하기 위해 필요한 여러 정보들을 모아 놓은 객체다.</p>
+
+<h3 id="실행-컨텍스트와-콜스택">실행 컨텍스트와 콜스택</h3>
+
+<p>그럼 이 실행 컨텍스트는 언제 만들어지고, 자바스크립트 엔진은 이 실행 컨텍스트에 있는 여러 정보들을 어떻게 가져올까?
+먼저 실행컨텍스트가 언제 생성되고 종료되는지 알아보자.</p>
+
+<p>실행 컨텍스트는 크게 전역 실행 컨텍스트와 함수 실행 컨텍스트로 분류할 수 있다. 전역 실행 컨텍스트는 자바스크립트 코드가 실행되는 순간에 바로 생성되고, 더 이상 실행할 코드가 없다면 전역 실행 컨텍스트는 종료된다. 함수 실행 컨텍스트 역시, 함수가 호출될 때 생성되고 함수가 종료되면 함수 실행 컨텍스트가 종료된다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">// 첫 번째</span>
+
+    <span class="kd">function</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">//두 번째</span>
+    <span class="p">}</span>
+
+    <span class="nf">inner</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">//세 번째</span>
+<span class="p">}</span>
+
+<span class="nf">outer</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">// 네 번쨰</span>
+</code></pre></div></div>
+
+<p>위 코드가 실행되는 순서와 함께 실행 컨텍스트가 생성되고 종료되는 과정을 자세하게 알아보자. 코드를 실행하면 주석에 작성된 순서대로 10, 25, 10, 10이 출력된다. 이 순서대로 코드가 실행되는 이유는 실행 컨텍스트가 생성되고 종료되는 과정으로 설명 가능하다.</p>
+
+<p>코드가 실행되면 전역 실행 컨텍스트가 생성된다. 그 다음 코드의 흐름 상 outer 함수가 호출된다. outer 함수가 호출되면, 10이 출력되고 inner 함수가 호출된다. inner 함수가 호출되면 inner 함수 실행 컨텍스트가 생성되고 inner 함수 내부에 작성된 console.log를 통해 숫자 25가 출력된다. inner 함수 내부의 모든 코드들이 실행된 다음 inner 함수가 종료되어 inner 함수 실행 컨텍스트가 종료된다. 종료 이후에는 다시 outer 함수 실행 컨텍스트로 돌아가서 outer 함수 내부의 console.log가 실행되어 숫자 10이 출력된다. 마찬가지로 outer 함수가 종료되어 outer 함수 실행 컨텍스트가 종료되고, 전역에 작성된 마지막 console.log를 통해 숫자 10이 출력된다. 실행해야될 남은 코드가 없기 때문에 전역 실행 컨텍스트도 종료되고 코드가 종료된다. 이 과정을 그림으로 나타내보면 다음과 같다.</p>
+
+<p><img src="https://github.com/hbin12212/hbin12212.github.io/assets/52522662/d0334043-55e5-4103-be2e-7a4655ab9175" alt="image" /></p>
+
+<p>그림을 보면 가장 마지막에 들어온 inner 함수 실행 컨텍스트가 가장 먼저 종료되어 사라지고, 가장 처음에 들어온 전역 실행 컨텍스트가 제일 마지막에 사라진다. 이러한 형태를 “스택” 이라고 부르고, 스택의 형태로 함수의 호출을 기록하고 실행 컨텍스트를 저장하는 자료구조를 “콜스택”이라고 부른다. 자바스크립트는 실행 컨텍스트를 콜스택에 담아 관련 코드들을 실행하고, 코드의 순서와 환경을 보장한다. 자바스크립트 엔진은 이 콜스택에 담긴 실행 컨텍스트들을 통해 자바스크립트 코드를 실행한다.</p>
+
+  </div></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/hbin12212" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/효빈-김-6003b1195/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><a href="https://twitter.com/hyob1221" target="_blank">
+          <li>
+            <i class="icon-twitter-squared"></i>
+          </li>
+        </a></ul><p class="about-footer condensed">&copy;
+        2024</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/assets/js/darkmode.js"></script>
+  
+  <script src="/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/assets/js/search.js"></script>
+  
+</body>
+
+</html>

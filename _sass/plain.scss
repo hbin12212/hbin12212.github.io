@@ -1,6 +1,12 @@
 @import 'ext/fonts';
 @import 'ext/normalize';
 @import 'syntax';
+@font-face {
+    font-family: 'Orbit-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/Orbit-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 $linkColor: #0a59b0;
 $mobileW: 768px;
@@ -15,7 +21,7 @@ $leftWidth: 220px;
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Orbit-Regular';
     font-size: 16px;
     line-height: 1.2em;
     margin: 0;
@@ -27,7 +33,7 @@ img,
 embed,
 object,
 video {
-    max-width: 50%;
+    max-width: 60%;
 }
 
 a {
@@ -167,7 +173,7 @@ main {
 
         a {
             display: block;
-            font-family: 'Merriweather';
+            font-family: 'Orbit-Regular';
             text-align: center;
             padding: 1rem 0;
             text-decoration: none;
@@ -226,7 +232,7 @@ main {
 
 .post-title {
     line-height: 1.2em;
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 10px;
 }
 .posts,
@@ -246,7 +252,7 @@ main {
     padding-left: 30px;
 }
 .post {
-    font-family: 'Merriweather', sans-serif;
+    font-family: 'Orbit-Regular';
     font-weight: 300;
     color: #1e1e1e;
     line-height: 1.9em;
@@ -267,7 +273,7 @@ main {
     h4,
     h5,
     h6 {
-        font-family: Raleway, sans-serif;
+        font-family: 'Orbit-Regular';
     }
 }
 .posts-labelgroup {
@@ -296,7 +302,7 @@ table {
     }
     th {
         background-color: #eee;
-        font-family: Raleway;
+        font-family: 'Orbit-Regular';
     }
 }
 

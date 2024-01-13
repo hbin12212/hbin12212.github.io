@@ -555,6 +555,12 @@ pre.highlight, code {
   tab-size: 4;
 }
 
+@font-face {
+  font-family: "Orbit-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/Orbit-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 *,
 *:before,
 *:after {
@@ -562,7 +568,7 @@ pre.highlight, code {
 }
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Orbit-Regular";
   font-size: 16px;
   line-height: 1.2em;
   margin: 0;
@@ -574,7 +580,7 @@ img,
 embed,
 object,
 video {
-  max-width: 50%;
+  max-width: 60%;
 }
 
 a {
@@ -725,7 +731,7 @@ main .about .about-header .about-title {
 }
 .navigation ul a {
   display: block;
-  font-family: "Merriweather";
+  font-family: "Orbit-Regular";
   text-align: center;
   padding: 1rem 0;
   text-decoration: none;
@@ -790,7 +796,7 @@ main .about .about-header .about-title {
 
 .post-title {
   line-height: 1.2em;
-  font-size: 28px;
+  font-size: 26px;
   margin-bottom: 10px;
 }
 
@@ -819,7 +825,7 @@ main .about .about-header .about-title {
 }
 
 .post {
-  font-family: "Merriweather", sans-serif;
+  font-family: "Orbit-Regular";
   font-weight: 300;
   color: #1e1e1e;
   line-height: 1.9em;
@@ -841,7 +847,7 @@ main .about .about-header .about-title {
 .post h4,
 .post h5,
 .post h6 {
-  font-family: Raleway, sans-serif;
+  font-family: "Orbit-Regular";
 }
 
 .posts-labelgroup {
@@ -870,7 +876,7 @@ table td {
 }
 table th {
   background-color: #eee;
-  font-family: Raleway;
+  font-family: "Orbit-Regular";
 }
 
 footer {
@@ -1186,7 +1192,7 @@ input:checked + .slider:before {
 }
 .dark .post p,
 .dark * .post p {
-  color: #ddd;
+  color: #ababab;
 }
 .dark .social [class^=icon-],
 .dark * .social [class^=icon-] {
@@ -1476,7 +1482,8 @@ input:checked + .slider:before {
 .dark * .highlight .il {
   color: #2aa198;
 }
-.dark .highlight, .dark .highlight *,
+.dark .highlight,
+.dark .highlight *,
 .dark * .highlight,
 .dark * .highlight * {
   background-color: #00080a;
@@ -1486,7 +1493,8 @@ input:checked + .slider:before {
 .dark * div.highlight-dark {
   padding: 5px 20px;
 }
-.dark pre.highlight-dark, .dark code,
+.dark pre.highlight-dark,
+.dark code,
 .dark * pre.highlight-dark,
 .dark * code {
   font-family: "Consolas", Menlo, monospace;
@@ -1551,7 +1559,8 @@ input:checked + .slider:before {
   color: white;
 }
 
-.dark table th, .dark table td {
+.dark table th,
+.dark table td {
   border: 1px solid #333;
 }
 .dark table th {
